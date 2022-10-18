@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import axios from 'axios';
 let id = 0;
 
 export const userSlice = createSlice({
@@ -9,7 +9,7 @@ export const userSlice = createSlice({
   },
   reducers: {
     addCurrentUser: (state, action) => {
-      state.currentUser = [...state.currentUser, {id: ++id, user: action.payload}];
+      state.currentUser = [...state.currentUser, {currentUser: action.payload}];
     },
     removeCurrentUser: (state, action) => {
       state.currentUser = [...state.currentUser.filter(currentUser => currentUser.id != action.payload)];

@@ -45,6 +45,11 @@ const Login = () => {
         placeholder='Enter Password'
         placeholderTextColor="#FFFFFF"
       />
+      <Pressable
+        onPress={() => Alert.alert('Hey')}
+        style={styles.loginButton}>
+        <Text style={styles.loginText}>Login</Text>
+      </Pressable>
       <Text style={styles.memberText}>Not a member?</Text>
       <Pressable
         onPress={() => Alert.alert('Hey')}
@@ -97,10 +102,9 @@ const styles = StyleSheet.create({
     color: 'white',
     position: 'absolute',
     left: '45%',
-    top: '72%',
+    top: '82%',
     marginTop: 60,
   },
-  
   usernameInput: {
     height: 40,
     margin: 12,
@@ -131,12 +135,12 @@ const styles = StyleSheet.create({
     borderRadius: 1,
     padding: 1,
     width: '25%',
-      borderWidth: 1,
+    borderWidth: 1,
     borderColor: 'gold',
     height: '6%',
-     position: 'absolute',
+    position: 'absolute',
     left: '45%',
-    top: '90%',
+    top: '95%',
   },
   registerText: {
     fontFamily: 'Cochin',
@@ -145,6 +149,27 @@ const styles = StyleSheet.create({
     color: 'white',
     margin: 10,
     left: '8%'
+  },
+  loginButton: {
+    borderRadius: 1,
+    padding: 1,
+    width: '25%',
+    borderWidth: 1,
+    borderColor: 'gold',
+    maxHeight: '60%',
+    position: 'absolute',
+    left: '45%',
+    top: '75%',
+    marginTop: '10%'
+  },
+  loginText: {
+    fontFamily: 'Cochin',
+    fontSize: 13,
+    fontWeight: 'bold',
+    color: 'white',
+    margin: 10,
+    left: '19%',
+    top: '1%'
   },
   title: {
     marginTop: 16,
