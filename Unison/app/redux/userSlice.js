@@ -9,7 +9,7 @@ export const userSlice = createSlice({
   },
   reducers: {
     addCurrentUser: (state, action) => {
-      state.currentUser = [...state.currentUser, {id: ++id, task: action.payload}];
+      state.currentUser = [...state.currentUser, {id: ++id, user: action.payload}];
     },
     removeCurrentUser: (state, action) => {
       state.currentUser = [...state.currentUser.filter(currentUser => currentUser.id != action.payload)];
