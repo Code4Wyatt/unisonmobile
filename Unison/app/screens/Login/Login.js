@@ -2,7 +2,14 @@ import {useForm, Controller} from 'react-hook-form';
 import {useDispatch, useSelector} from 'react-redux';
 import {userLogin, getUserDetails} from '../../redux/authActions';
 import {connect} from 'react-redux';
-import {Text, View, Button, TextInput, StyleSheet, Pressable} from 'react-native';
+import {
+  Text,
+  View,
+  Button,
+  TextInput,
+  StyleSheet,
+  Pressable,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
@@ -43,26 +50,25 @@ const LoginScreen = () => {
 
     dispatch(userLogin(data));
     const getStorageValue = async () => {
-    try {
-      var token = await AsyncStorage.getItem('userToken');
+      try {
+        var token = await AsyncStorage.getItem('userToken');
 
-      setTokenValue(token);
-      console.log('tokenvalueeee', token);
+        setTokenValue(token);
+        console.log('tokenvalueeee', token);
 
-       token && navigate.navigate('Home');
- 
-      return token;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+        token && navigate.navigate('Home');
 
-  getStorageValue();
+        return token;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getStorageValue();
 
     dispatch(getUserDetails(data));
   };
 
-  
   console.log('outside', tokenValue);
   // if (tokenValue) {
   //       navigate.navigate('Home')
@@ -101,21 +107,23 @@ const LoginScreen = () => {
           )}
           name="password"
         />
-<Button color="#841584" title="Submit" onPress={handleSubmit(onSubmit)} />
-      <Pressable onPress={handleSubmit(onSubmit)} style={styles.registerButton}>
-  <Text style={styles.registerText}>Login</Text>
-</Pressable>
-      
+        <Button
+          color="#841584"
+          title="Submit"
+          onPress={handleSubmit(onSubmit)}
+        />
+        <Pressable
+          onPress={handleSubmit(onSubmit)}
+          style={styles.registerButton}>
+          <Text style={styles.registerText}>Login</Text>
+        </Pressable>
       </View>
-    
-        
     </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-
     height: '100%',
     padding: 20,
     backgroundColor: 'black',
@@ -191,7 +199,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: '45%',
     top: '95%',
-    color: 'white'
+    color: 'white',
   },
   registerText: {
     fontFamily: 'Cochin',
@@ -199,12 +207,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
     margin: 10,
-  left: '8%'
+    left: '8%',
   },
   loginButton: {
-    
     borderColor: 'gold',
-  
   },
   loginText: {
     fontFamily: 'Cochin',
