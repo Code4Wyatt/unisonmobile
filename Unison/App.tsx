@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  user: state.currentUser,
+  user: state.user,
 });
 
 export default connect(mapStateToProps)(App);
