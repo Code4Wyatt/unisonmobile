@@ -1,6 +1,6 @@
 import {useForm, Controller} from 'react-hook-form';
 import {useDispatch, useSelector} from 'react-redux';
-import {userLogin, getUserDetails} from '../../redux/authActions';
+import {userLogin, getUserDetails} from '../redux/authActions';
 import {connect} from 'react-redux';
 import {
   Text,
@@ -13,8 +13,9 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
-import {Alert} from 'react-native';
-const LoginScreen = () => {
+import { Alert } from 'react-native';
+
+const Login = () => {
   // const {loading, error} = useSelector(state => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigation();
@@ -54,9 +55,9 @@ const LoginScreen = () => {
         var token = await AsyncStorage.getItem('userToken');
 
         setTokenValue(token);
-        console.log('tokenvalueeee', token);
+        console.log('tokenvalueeee', tokenValue);
 
-        token && navigate.navigate('Home');
+        navigate.navigate('Home');
 
         return token;
       } catch (error) {
@@ -69,7 +70,7 @@ const LoginScreen = () => {
     dispatch(getUserDetails(data));
   };
 
-  console.log('outside', tokenValue);
+
   // if (tokenValue) {
   //       navigate.navigate('Home')
   //     }
@@ -87,6 +88,7 @@ const LoginScreen = () => {
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
+              placeholder='Username'
             />
           )}
           name="email"
@@ -103,14 +105,10 @@ const LoginScreen = () => {
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
+              placeholder='Password'
             />
           )}
           name="password"
-        />
-        <Button
-          color="#841584"
-          title="Submit"
-          onPress={handleSubmit(onSubmit)}
         />
         <Pressable
           onPress={handleSubmit(onSubmit)}
@@ -126,42 +124,6 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     padding: 20,
-    backgroundColor: 'black',
-  },
-  logo: {
-    position: 'absolute',
-    left: '40%',
-    top: '10%',
-    height: '40%',
-  },
-  baseText: {
-    fontFamily: 'Cochin',
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'white',
-    position: 'absolute',
-    left: '46%',
-    top: '5%',
-  },
-  subText: {
-    fontFamily: 'Cochin',
-    fontSize: 13,
-    fontWeight: 'bold',
-    color: 'white',
-    position: 'absolute',
-    left: '42%',
-    top: '42%',
-    marginTop: '10%',
-  },
-  memberText: {
-    fontFamily: 'Cochin',
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: 'white',
-    position: 'absolute',
-    left: '45%',
-    top: '82%',
-    marginTop: 60,
   },
   usernameInput: {
     height: 40,
@@ -170,10 +132,10 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     borderColor: 'gold',
     padding: 10,
-    position: 'absolute',
+    position: 'relative',
     width: '75%',
-    left: '15%',
-    top: '50%',
+    left: '10%',
+    top: '20%',
     color: 'white',
   },
   passwordInput: {
@@ -183,22 +145,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'gold',
     padding: 10,
-    position: 'absolute',
+    position: 'relative',
     width: '75%',
-    left: '15%',
-    top: '60%',
+    left: '10%',
+    top: '15%',
     color: 'white',
   },
   registerButton: {
-    borderRadius: 1,
     padding: 1,
     width: '25%',
     borderWidth: 1,
     borderColor: 'gold',
     height: '6%',
     position: 'absolute',
-    left: '45%',
-    top: '95%',
+    left: '15%',
+    bottom: '40%',
     color: 'white',
   },
   registerText: {
@@ -235,4 +196,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default Login;

@@ -16,6 +16,7 @@ export const userLogin = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       };
+      AsyncStorage.setItem('email', email);
 
       const {data} = axios.post(
         'http://10.0.2.2:5050/auth/login',
@@ -24,13 +25,15 @@ export const userLogin = createAsyncThunk(
       ).then((response) => {
         console.log(response.data.accessToken)
         const token = JSON.stringify(response.data.accessToken)
-        console.log('tokenstring', token)
+        console.log(token)
         AsyncStorage.setItem('userToken', token);
+    
+        
        
       }).catch((err) => {
         console.error(err)
       });
-    
+    AsyncStorage.setItem('userToken', token);
       return data;
     } catch (error) {
       // return custom error message from API if any
@@ -73,15 +76,16 @@ export const getUserDetails = createAsyncThunk(
   async (arg, {getState, rejectWithValue}) => {
     try {
       // get user data from store
-      const {user} = getState();
+      const { user } = getState();
+      let token = AsyncStorage.getItem('userToken', token);
       // configure authorization header with user's token
       const config = {
         headers: {
-          Authorization: `Bearer ${user.userToken}`,
+          Authorization: `Bearer ${token}`,
         },
       };
 
-      const {data} = await axios.get(`/api/user/profile`, config);
+      const {data} = await axios.get(`/users/currentUser`, config);
       return data;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -92,3 +96,5 @@ export const getUserDetails = createAsyncThunk(
     }
   },
 );
+
+export default {userLogin, getUserDetails}
